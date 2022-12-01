@@ -3,6 +3,22 @@ session_start();
 require'config.php';
 ?>
 
+<script>
+    function confirmV(arr){
+        if(arr=='0'){
+            if(!confirm('Are you sure To desactivate ?')){
+                event.preventDefault();
+                alert(" ");
+            }
+        }else{
+            if(!confirm('Are you sure To Activate ?')){
+                event.preventDefault();
+                alert(" ");
+            }
+        }
+    }
+</script>
+
 
 <script>
     function aff_add_form(){
@@ -208,6 +224,7 @@ require'config.php';
                                         <th scope="col">phone</th>
                                         <th scope="col">adress</th>
                                         <th scope="col">code</th>
+                                        <th scope="col">Active</th>
                                         <th> Action</th>
                                     </tr>
                                 </thead>
@@ -233,6 +250,7 @@ require'config.php';
                                                 <td><?= $users['phone'];?></td>
                                                 <td><?= $users['adress'];?></td>
                                                 <td><?= $users['code'];?></td>
+                                                <td><?= $users['activity'];?></td>
                                                 <td>
                                                    
                                                     <a href="../front/id-edit.php?id=<?= $users['id']; ?>" class="btn btn-success btn-sm">Update</a>
@@ -245,6 +263,18 @@ require'config.php';
                                                     <button type="submit" name="delete-user" value="<?= $users['id'] ?>" class="btn btn-danger btn-sm">Delete</button>
 
                                                     </form>
+                                                    <?php
+                                                    if ($users['activity'] == '0') { ?>
+                                                        <form action="../front/codeD.php" method="POST" onsubmit="confirmV(<?=$users['activity'];?>)" class="d-inline" style="margin-left:4.5%">
+                                                            <input hidden type="text" name="activity" id="activity" value="<?= $users['activity']; ?>" >
+                                                            <button type="submit" name="desactivate" value="<?= $users['id'] ?>" class="btn btn-success btn-sm" >Active</button>
+                                                        </form>
+                                                    <?php }else{ ?>
+                                                        <form action="../front/codeD.php" method="POST" onsubmit="confirmV(<?=$users['activity'];?>)" class="d-inline">
+                                                            <input hidden type="text" name="activity" value="<?= $users['activity']; ?>" >
+                                                            <button type="submit" name="desactivate" value="<?= $users['id'] ?>" class="btn btn-danger btn-sm">Desactive</button>
+                                                        </form>
+                                                    <?php } ?>
                                                 </td>
                                                 </tr>
                                                 <?php

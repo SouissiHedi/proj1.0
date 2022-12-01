@@ -7,6 +7,8 @@ if(isset($_POST['delete-user']))
 {
     $id = $_POST['delete-user'];
 
+    $query0 = "DELETE FROM role WHERE id_client='$id'";
+    $query_run0 = $conn->query($query0);
     
     $query = "DELETE FROM users WHERE id='$id'";
     $query_run = $conn->query($query);
@@ -24,6 +26,33 @@ if(isset($_POST['delete-user']))
         exit(0);
     }
     
+}
+
+
+if(isset($_POST['desactivate']))
+{
+    $id = $_POST['desactivate'];
+    $acti = (int) $_POST['activity'];
+    if ($acti ==0){
+        $acti =1;
+    }else{
+        $acti =0;
+    }
+    
+    $query="UPDATE users SET activity='$acti' WHERE id=$id  ";
+    $query_run = $conn->query($query);
+    if($query_run)
+    {
+    $_SESSION['message']="Information mise à jour ";
+    header("Location: ../back/table.php");
+    exit(0);
+    }
+    else
+    {
+    $_SESSION['message']="Erreur";
+    header("Location: ../back/table.php");
+    exit(0);
+    }
 }
 
 if(isset($_POST['admin-user']))
