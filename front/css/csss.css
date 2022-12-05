@@ -1,0 +1,52 @@
+.rationg
+{
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotateY(180deg);
+    
+    display: flex;
+}
+
+.rationg input
+{
+    /*display: none;*/
+}
+
+.rationg label
+{
+
+    display: block;
+    cursor: pointer;
+    width:50px;
+  
+}
+.rationg label:before
+{
+
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 50px;
+    color: #101010;
+}
+.rationg label:after
+{
+
+    content: '\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    font-size: 50px;
+    color: #FFC300;
+    top:0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+.rationg label:hover:after, 
+.rationg label:hover ~ label:after,
+.rationg input:checked ~ label:after
+{
+    opacity: 1;
+}

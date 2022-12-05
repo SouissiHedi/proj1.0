@@ -1,3 +1,14 @@
+
+<?php
+require 'client.php';
+$clientC=new reclamation();
+
+$list=$clientC->listeClient2($_POST['id']);
+echo "dedef".$_POST['id'];
+//echo "zzzzzzzz".strcmp($_POST['id'],'211JMT4901');
+
+?>
+
 <!DOCTYPE html><html><head><meta charset="utf-8"/>
 
   
@@ -23,7 +34,8 @@
   <link href="css/style.css" rel="stylesheet"/>
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet"/>
-  <link href="css/csss.css" rel="stylesheet"/>
+
+
 </head>
 
 <body class="sub_page">
@@ -85,133 +97,115 @@
   <!-- contact section -->
   <section class="contact_section layout_padding">
     <div class="container contact_heading">
-      <h1> <i class="fa-sharp fa-solid fa-gear"></i> 
-      <span>Nouvelle</span> <span>Réclamation</span>
-      </h1>
+      <h2> <i class="fa-sharp fa-solid fa-gear"></i> 
+       Nouvelle Réclamation
+      </h2>
      <!-- <p>
         psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
       </p>-->
     </div>
     <div class="container">
       
-   <form method="POST" >  
-        <div class="form-row"> 
-          <div class="form-group col-md-6">
-            <label for="inputName4">  <i class="fa-solid fa-user"> </i> Name </label>
-         <input  type="text" class="form-control" id="inputName4"   name="prenom" />    
-         <test1 > </test1>
-           
-          </div>
-
-        
-      
-          <div class="form-group col-md-6">
-            <label for="inputEmail6">  <i class="fa-solid fa-id-card"></i> Id</label>
-            <input type="text" class="form-control" id="inputEmail6" name="id" >
-            <test3>  </test3>
-          </div>
-          
+    
+    <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                
                            
-         
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputNumber5">  <i class="fa-solid fa-phone"></i>Phone number</label>
-            <input type="tel" class="form-control" id="inputNumber5" name="num" >
-            <test2>  </test2>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputState">  <i class="fa-solid fa-tower-broadcast"></i> Degré d'urgence</label>
-            <select id="inputState" class="form-control" name="degre" >
-
-              <option value="normale">normale</option>
-               <option value="urgent">urgent</option>
-            </select>
-           
-          </div>
-
-        </div>
 
 
-       
-           
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id_rec</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">id_client</th>
+                                            <th scope="col">phone</th>
+                                            <th scope="col">date</th>
+                                            <th scope="col"> code produit</th>
+                                            <th scope="col">code d achat</th>
+                                            <th scope="col">degré d'urgence</th>
+                                            <th scope="col">reclamation</th>
+                                            <th scope="col">operation</th>
+                                            <th scope="col">reponse</th>
+                                        </tr>
+                                    </thead>
 
-          <div class="form-row"> 
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">  <i class="fa-solid fa-calendar-days"></i>date</label>
-            <input type="date" class="form-control" id="inputEmail4" name="date" />
-
-          </div>
-        
-         
-          <div class="form-group col-md-6">
-            <label for="inputNumber8">   <i class="fa-solid fa-code"></i> code produit</label>
-            <input type="text" class="form-control" id="inputNumber8" name="codep" />
-           <!-- <test4>  </test4> -->
-          </div>
-          </div>
-       
-          <div class="form-group col-md-6">
-            <label for="inputNumber7">   <i class="fa-solid fa-code"></i>  code d'achat</label>
-            <input type="text" class="form-control" id="inputNumber7" name="codea" />
-           <!--  <test5></test5> -->
-          </div>         
-
-      
-      
-
-   
-    
+                                    <tbody>
+                                   
+                                    <?php
 
 
+foreach($list as $client)
+{
+
+?>
+
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['prenom'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['id_client'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['num'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo  $client['date'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['code_produit'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['code_dachat'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['degre'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['reclamation'];};             ?></td>
+                                            <td><?php if(strcmp($_POST['id'],$client['id_client'])==0){ echo $client['re'];};             ?></td>
+                                            <td> <button ><a href="ubdate_for.php?delteteid=<?=$client['id'];?>">update</a></button></td>
+                                        </tr>
+                                        <?php
+}
+
+?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
 
-        <div class="form-group">
-          <label for="inputMessage">   <i class="fa-sharp fa-solid fa-circle-exclamation"></i> Détails de la réclamation</label>
-
-          <textarea name="reclamation" type="text" class="form-control" id="inputMessage" placeholder=""></textarea>
-              
-        </div>
-    </div>
-
-    <div class="rationg">
-  <input type="radio" name="star" id="star"  value=5><label for="star1">
-    
-</label>
-<input type="radio" name="star" id="star" value=4><label for="star2">
-</label>
-<input type="radio" name="star" id="star" value=3><label for="star3">
-</label>
-<input type="radio" name="star" id="star" value=2><label for="star4">
-</label>
-<input type="radio" name="star" id="star" value=1><label for="star5">
-  
-</label>
+            
 
 
-</div>
-   
-    <div class="d-flex justify-content-center">
-      <!--  <form action="config2.php">  -->
-      <button type="submit"  id="upe" value="confirmer" name="upe">Send</button>
-     <!--  </form> -->
-    </div> 
-   
-  </form>
 
-    <div class="d-flex justify-content-center">
-    <form action="update.php">
-      <button   type="submit">UPDATE</button>
-      </form> <!--    -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     </div>
+
+    </form> <!--  form input  -->
+
  
     
-    
   </section>
+
 
   <!-- end contact section -->
   <div class="footer_bg">
@@ -464,25 +458,17 @@
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   
-  
-  </form>
-
-  <script src="controle.js"></script>
  
-</script>
+  </form>
+  
 </body>
-<script src="https://smtpjs.com/v3/smtp.js">
-</script>
 </html>
-
 
 
 <?php
 
-require 'client.php';
-
 $clientC=new reclamation();
-if (isset($_POST['upe']  ) ) {
+if (isset($_POST['up'])) {
  
 
    $prenom=$_POST['prenom'];
@@ -494,33 +480,17 @@ if (isset($_POST['upe']  ) ) {
     $da=$_POST['date'];
     $codep=$_POST['codep'];
     $codea=$_POST['codea'];
-    $reclamation= $_POST['reclamation'];  
-    if($_POST['star']==NULL )
-    {
-      $st=0;
-    }
-    else
-    {
-      $st=$_POST['star'];
-    }
+    $reclamation= $_POST['reclamation'];    
+
+  
+    $clientC->updclient($id,$prenom,$num, $de,$codea, $codep,$reclamation);
 
 
-   
-
-
-
-    
-    $clientC->ajouter_reclamation($prenom,$id,$num,$da,$codea,$codep,$de,$reclamation,$st);
-
-    //header('Location: client.php');
    
 
 
     
  }
-
-
-
 
 
 

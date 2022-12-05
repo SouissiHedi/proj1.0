@@ -1,6 +1,18 @@
 <?php
 session_start();
-require'config.php';
+require 'config.php';
+
+include '../front/client.php';
+$clientC=new reclamation();
+
+$list=$clientC->listeClient();
+$c5=$clientC->star5();
+$c4=$clientC->star4();
+$c3=$clientC->star3();
+$c2=$clientC->star2();
+$c1=$clientC->star1();
+$c0=$clientC->star0();
+
 ?>
 
 <script>
@@ -637,10 +649,89 @@ require'config.php';
                         </div>
                     </div>
                 
-                 
+
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Responsive Table</h6>
+                            <div class="table-responsive">
+                                <table class="table" id="tableau">
+                                    
+                                        <tr>
+                                            <th scope="col">id_rec</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">id_client</th>
+                                            <th scope="col">phone</th>
+                                            <th scope="col">date</th>
+                                            <th scope="col"> code produit</th>
+                                            <th scope="col">code d achat</th>
+                                            <th scope="col">degré d'urgence</th>
+                                            <th scope="col">reclamation</th>
+                                            <th scope="col">reponse</th>
+                                            <th scope="col">operation</th>
+                                           
+                                        </tr>
+                         
+
+                                                                        
+                                                                            <?php
+                                        foreach($list as $client)
+                                        {
+
+                                        ?>
+                                          <tr>
+                                            <th scope="row"><?=$client['id'];?></th>
+                                           
+                                            <td><?=$client['prenom'];?></td>
+                                            <td><?=$client['id_client'];?></td>
+                                            <td><?=$client['num'];?></td>
+                                            <td><?=$client['date'];?></td>
+                                            <td><?=$client['code_produit'];?></td>
+                                            <td><?=$client['code_dachat'];?></td>
+                                            <td><?=$client['degre'];?></td>
+                                            <td><?=$client['reclamation'];?></td>
+                                            <td><?=$client['re'];?></td>
+                                            <td> <button class="btn btn-danger btn-sm"><a href="table.php?delteteid=<?=$client['id'];?>" style="color:white" >Delete</a></button></td>
+                                            <td> <button class="btn btn-danger btn-sm" ><a href="rep.php?delteteid=<?=$client['id'];?>" style="color:white" >repondre</a></button></td>
+                                            <td> <button class="btn btn-warning btn-sm" ><a href="rep2.php?delteteid=<?=$client['id'];?>" style="color:white">UPDATE</a></button></td>
+                                            </tr>
+                                                                        
+                                    <?php 
+                                    } ?>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
+
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script>
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                    labels: [ 'star0','star1', 'star2', 'star3', 'star4', 'star5'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [<?php echo $c0;?>,<?php echo $c1;?>,<?php echo $c2;?>, <?php echo $c3;?>, <?php echo $c4;?>,<?php echo $c5;?>],
+                        borderWidth: 10
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true
+                        }
+                    }
+                    }
+                });
+            </script>
             <!-- Table End -->
 
 
@@ -680,7 +771,23 @@ require'config.php';
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js1/main.js"></script>
+    <script src="src.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
+
+
+<?php
+
+
+if(isset($_GET['delteteid']))
+{
+
+   // $idd=$_GET['delteteid'];
+   $clientC->deleteclient($_GET['delteteid']);
+   $clientC->deletrep($_GET['delteteid']);
+    //echo'qddqd'.$idd;
+}
+
+?>
