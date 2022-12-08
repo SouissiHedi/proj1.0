@@ -1,15 +1,21 @@
 <?php
-include '../front/client.php';
-$clientC=new reclamation();
 
-$idd=$_GET['delteteid'];
-echo "sssssssssssss".$idd;
-$a=$clientC->chrclient($idd);
+include('config.php');
+    
+$id=$_GET['id'];
+    
+        
+  $query="SELECT * FROM don where id_catégories='$id'";
+  $query_run=$conn->query($query);  
+  $data=$query_run->fetchAll();
 
+  
+  $query_count = "SELECT COUNT(*) FROM don where id_catégories='$id'";
+  $res = $conn->query($query_count);
+  $count = $res->fetchColumn();
 
 
 ?>
-
 
 
 
@@ -58,11 +64,11 @@ $a=$clientC->chrclient($idd);
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Mehdi</h6>
+                        <h6 class="mb-0">Jhon Doe</h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -77,8 +83,8 @@ $a=$clientC->chrclient($idd);
                         </div>
                     </div>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.php" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="form.html" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Forms</a>
+                    <a href="http://localhost/PROJET/Back-office-master/darkpan-1.0.0/table.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
@@ -117,7 +123,7 @@ $a=$clientC->chrclient($idd);
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -127,7 +133,7 @@ $a=$clientC->chrclient($idd);
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -137,7 +143,7 @@ $a=$clientC->chrclient($idd);
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -174,8 +180,8 @@ $a=$clientC->chrclient($idd);
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">Mehdi</span>
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
@@ -188,65 +194,69 @@ $a=$clientC->chrclient($idd);
             <!-- Navbar End -->
 
 
-
-
-
-
-
-         
+            <!-- Form Start -->
+            <?php
+   
+   if($count!=0)
+        {
+            foreach($data as $clientC){
+       ?>
             <div class="container-fluid pt-4 px-4">
-               
-
-
-
-           <br>
-           <br>
-           <br>
-
-           <form action="table.php?delteteid=<?=$idd;?>" method="POST">
-                <div class="form-group">
-                    <label for="inputMessage">    Détails de la réclamation</label>
-
-                    <textarea name="reclamation" type="text" class="form-control" id="inputMessage" ></textarea>
-                        
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4"></h6>
+                            <form action="http://localhost/PROJET/Back-office-master/darkpan-1.0.0/update.php" method="post">
+                               
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">IDD</label>
+                                    <input name="id" type="text" class="form-control" id="exampleInputPassword1" value="<?= $clientC['IDD']?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">id categorie</label>
+                                    <input name="id2" type="text" class="form-control" id="exampleInputPassword1" value="<?= $clientC['id_catégories']?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">objet</label>
+                                    <input name="objet" type="text" class="form-control" id="exampleInputPassword1" value="<?= $clientC['objet']?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">caractéristiques</label>
+                                    <input name="caractéristiques" type="text" class="form-control" id="exampleInputPassword1" value="<?= $clientC['caractéristiques']?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">description</label>
+                                    <input name="description" type="text" class="form-control" id="exampleInputPassword1" value="<?= $clientC['description']?>">
+                                </div>
+                                <br>
+                                <div>
+                                <label for="sujet">Choisissez votre type de don: </label>
+                                <select name="sujet" id="sujet" >
+                                <option value="" disabled selected hidden>Choisissez votre type de don</option>
+                                <option value="donation-simple">Donation simple    (pour avantager les personnes de votre choix)</option>
+                                <option value="donation-partage">Donation partage  (pour eviter d'eventuels conflits)</option>
+                                <option value="donation-manuel">Donation manuel    (pour transmettre de l'argent et certains bien)</option>
+                                <option value="autre">Autre...</option>
+                                </select>
+                                </div>
+                                <br>
+                               
+                                
+                               
+                                <button type="submit" class="btn btn-primary">UPDATE</button>
+                            </form>
+                        </div>
+                    </div>
+                   
                 </div>
+            </div>
 
-                <br>
-                <br>
-                <div class="d-flex justify-content-center">
-            
-                    <button type="submit"   value="confirmer" name="uprep" herf="contact.php" class="btn btn-danger btn-sm"><a  style="color:white">Send</button>
-                
-                </div>
-
-            </form>
-
-
-
-
-    <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-
-
-
-
-           
+        
+    <?php
+            }
+        }
+    ?>
+            <!-- Form End -->
 
 
             <!-- Footer Start -->
@@ -289,4 +299,3 @@ $a=$clientC->chrclient($idd);
 </body>
 
 </html>
-

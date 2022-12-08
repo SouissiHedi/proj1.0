@@ -13,6 +13,26 @@ $c2=$clientC->star2();
 $c1=$clientC->star1();
 $c0=$clientC->star0();
 
+if(isset($_POST['up']))
+{
+
+
+   $clientC->updrep($_GET['delteteid'],$_POST['reclamation']);
+  
+   $clientC->updreppp2($_GET['delteteid'],$_POST['reclamation']);
+   header('Location: table.php');
+}
+
+
+if(isset($_POST['uprep']))
+{
+
+   $clientC->ajouter_reclamation2($_GET['delteteid'],$_POST['reclamation']);
+   $clientC->updclient2($_GET['delteteid'],$_POST['reclamation']);
+   
+   header('Location: table.php');
+}
+
 ?>
 
 <script>
@@ -78,6 +98,7 @@ $c0=$clientC->star0();
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
@@ -317,7 +338,7 @@ $c0=$clientC->star0();
                         <div class="bg-secondary rounded h-100 p-4">
                             <div style="display: flex;">
                                 <div style="flex: 50%;"><h6 class="mb-4">table des produits</h6></div>
-                                <div style="flex: 50%;margin-left: 69%;"><a href="BigWing/addform.php"  class="btn btn-success btn-sm">Add</a></div>   
+                                <div style="flex: 50%;margin-left: 69%;"><a href="../front/addform.php"  class="btn btn-success btn-sm">Add</a><a href="pie.php" style="height:63%;"  class="btn btn-light rounded-pill m-2">!</a></div>   
                             </div>
                             <table class="table">
                                 <thead>
@@ -391,7 +412,7 @@ $c0=$clientC->star0();
                         <div class="bg-secondary rounded h-100 p-4">
                             <div style="display: flex;">
                                 <div style="flex: 50%;"><h6 class="mb-4">table des produits</h6></div>
-                                <div style="flex: 50%;margin-left: 69%;"><a href="BigWing/addform.php"  class="btn btn-success btn-sm">Add</a></div>   
+                                <div style="flex: 50%;margin-left: 69%;"><a href="../front/addform.php"  class="btn btn-success btn-sm">Add</a><a href="pie.php" style="height:63%;"  class="btn btn-light rounded-pill m-2">!</a></div>   
                             </div>
                             <table class="table">
                                 <thead>
@@ -745,6 +766,7 @@ $c0=$clientC->star0();
                                         <th scope="col">objet</th>
                                         <th scope="col">caractéristiques</th>
                                         <th scope="col">description</th>
+                                        <th scope="col">Photo</th>
                                         <th scope="col">Type</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -770,10 +792,11 @@ $c0=$clientC->star0();
                                                     <td><?= $clientC['objet']?></td>
                                                     <td><?= $clientC['caractéristiques']?></td>
                                                     <td><?= $clientC['description']?></td>
+                                                    <td><img style="margin-left:20px;max-height:30px" src='data:image/png;base64,<?=base64_encode($clientC['photos'])?>'/></td>
                                                     <td><?= $clientC['catégorie']?></td>
                                                     <td>
                                                         <a class="btn btn-danger btn-sm" href="delete.php?objet=<?= $clientC['id_categorie']; ?>">delete</a>
-                                                        <a class="btn btn-success btn-sm" href="form.php?id=<?= $clientC['id_categorie']; ?>">UPDATE</a>
+                                                        <a class="btn btn-success btn-sm" href="form2.php?id=<?= $clientC['id_categorie']; ?>">UPDATE</a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -791,7 +814,6 @@ $c0=$clientC->star0();
                         </div>
                     </div>
                
-                    <td><a  href="..\..\projet-web-master\BigWing\index.html">go to web site</a></td>
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">Table catégories</h6>
@@ -876,9 +898,9 @@ $c0=$clientC->star0();
                                             <td><?=$client['degre'];?></td>
                                             <td><?=$client['reclamation'];?></td>
                                             <td><?=$client['re'];?></td>
-                                            <td> <button class="btn btn-danger btn-sm"><a href="table.php?delteteid=<?=$client['id'];?>" style="color:white" >Delete</a></button></td>
-                                            <td> <button class="btn btn-danger btn-sm" ><a href="rep.php?delteteid=<?=$client['id'];?>" style="color:white" >repondre</a></button></td>
-                                            <td> <button class="btn btn-warning btn-sm" ><a href="rep2.php?delteteid=<?=$client['id'];?>" style="color:white">UPDATE</a></button></td>
+                                            <td style="width:21%;"> <button class="btn btn-danger btn-sm"><a href="table.php?delteteid=<?=$client['id'];?>" style="color:white" >Delete</a></button>
+                                            <button class="btn btn-danger btn-sm" ><a href="rep.php?delteteid=<?=$client['id'];?>" style="color:white" >repondre</a></button>
+                                            <button class="btn btn-warning btn-sm" ><a href="rep2.php?delteteid=<?=$client['id'];?>" style="color:white">UPDATE</a></button></td>
                                             </tr>
                                                                         
                                     <?php 

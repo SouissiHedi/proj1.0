@@ -205,23 +205,23 @@ $a=$clientC->chrrep($idd);
            <br>
            <br>
 
-           <form method="POST">
+        <form action="table.php?delteteid=<?=$idd;?>" method="POST">
             <div class="form-group">
-          <label for="inputMessage">    Détails de la réclamation</label>
+                <label for="inputMessage">    Détails de la réclamation</label>
 
-          <textarea name="reclamation" type="text" class="form-control" id="inputMessage" > <?php echo $a->rep; ?></textarea>
-              
-        </div>
+                <textarea name="reclamation" type="text" class="form-control" id="inputMessage" > <?php echo $a->rep; ?></textarea>
+                    
+            </div>
 
-        <br>
-           <br>
-        <div class="d-flex justify-content-center">
-   
-      <button type="submit"   value="confirmer" name="up" id="up" herf="contact.php">Send</button>
-      
-    </div> 
+                <br>
+                <br>
+            <div class="d-flex justify-content-center">
+        
+                <button type="submit"   value="confirmer" name="up" id="up" herf="contact.php">Send</button>
+            
+            </div> 
 
-    </form>
+        </form>
 
 
 
@@ -296,15 +296,6 @@ $a=$clientC->chrrep($idd);
 <?php
 
 
-if(isset($_POST['up']))
-{
 
-
-   $clientC->updrep($_GET['delteteid'],$_POST['reclamation']);
-  
-   $clientC->updreppp2($_GET['delteteid'],$_POST['reclamation']);
-   
-    //echo'qddqd'.$idd;
-}
 
 ?>

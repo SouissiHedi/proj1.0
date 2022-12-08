@@ -1,17 +1,32 @@
 <?php
-include '../front/client.php';
-$clientC=new reclamation();
 
-$idd=$_GET['delteteid'];
-echo "sssssssssssss".$idd;
-$a=$clientC->chrclient($idd);
+require 'config.php';
+$name_arr = array();
+$id_arr = array();
+$val_arr = array();
+$allcat_qu = "SELECT * FROM category";
+$allcat=$conn->query($allcat_qu);
+$aa=0;
+foreach ($allcat as $Ctgs){
+    $aa++;
+    $name_arr[] =$Ctgs['NomCat'];
+    $id_arr[] =$Ctgs['IdCat'];
+    $val_arr[$Ctgs['IdCat']]=0;
+}
+    $jointure = "SELECT * FROM produit INNER JOIN category ON produit.Type = category.IdCat";
+    $requ=$conn->prepare($jointure);
+    $requ->execute();
+    $data=$requ->fetchAll(PDO::FETCH_ASSOC);
 
-
-
+    $query_count = "SELECT COUNT(*) FROM produit INNER JOIN category ON produit.Type = category.IdCat";
+    $res = $conn->query($query_count);
+    $count = $res->fetchColumn();
+    if($count>0){
+        foreach ($data as $produit){
+            $val_arr[$produit['IdCat']]++;
+        }
+    }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,45 +63,51 @@ $a=$clientC->chrclient($idd);
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
-
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <a href="index.php" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Mehdi</h6>
+                        <h6 class="mb-0">Jhon Doe</h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
+                            <a href="button.php" class="dropdown-item">Buttons</a>
+                            <a href="typography.php" class="dropdown-item">Typography</a>
+                            <a href="element.php" class="dropdown-item">Other Elements</a>
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.php" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
+                    <a href="widget.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+                    <a href="form.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
+                    <a href="table.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="chart.php" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Sign In</a>
-                            <a href="signup.html" class="dropdown-item">Sign Up</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                            <a href="blank.html" class="dropdown-item">Blank Page</a>
+                            <a href="signin.php" class="dropdown-item">Sign In</a>
+                            <a href="signup.php" class="dropdown-item">Sign Up</a>
+                            <a href="404.php" class="dropdown-item">404 Error</a>
+                            <a href="blank.php" class="dropdown-item">Blank Page</a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +120,7 @@ $a=$clientC->chrclient($idd);
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                <a href="index.php" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
                 </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
@@ -117,7 +138,7 @@ $a=$clientC->chrclient($idd);
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -127,7 +148,7 @@ $a=$clientC->chrclient($idd);
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -137,7 +158,7 @@ $a=$clientC->chrclient($idd);
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -174,8 +195,8 @@ $a=$clientC->chrclient($idd);
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/mehdi.png" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">Mehdi</span>
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
@@ -188,65 +209,20 @@ $a=$clientC->chrclient($idd);
             <!-- Navbar End -->
 
 
-
-
-
-
-
-         
+            <!-- Chart Start -->
             <div class="container-fluid pt-4 px-4">
-               
-
-
-
-           <br>
-           <br>
-           <br>
-
-           <form action="table.php?delteteid=<?=$idd;?>" method="POST">
-                <div class="form-group">
-                    <label for="inputMessage">    Détails de la réclamation</label>
-
-                    <textarea name="reclamation" type="text" class="form-control" id="inputMessage" ></textarea>
-                        
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Pie Chart of Categories</h6>
+                            <div style="margin-left: auto;margin-right: auto;width: 50%; height: 50%">
+                                <canvas  id="pie-prod"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <br>
-                <br>
-                <div class="d-flex justify-content-center">
-            
-                    <button type="submit"   value="confirmer" name="uprep" herf="contact.php" class="btn btn-danger btn-sm"><a  style="color:white">Send</button>
-                
-                </div>
-
-            </form>
-
-
-
-
-    <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-
-
-
-
-           
+            </div>
+            <!-- Chart End -->
 
 
             <!-- Footer Start -->
@@ -285,8 +261,46 @@ $a=$clientC->chrclient($idd);
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js1/main.js"></script>
+    
+    <script>
+        // Pie Chart
+        var a=<?= $aa;?> ;
+        var listname = JSON.parse('<?= json_encode($name_arr); ?>');
+        var listid = JSON.parse('<?= json_encode($id_arr); ?>');
+        var listval = JSON.parse('<?= json_encode($val_arr); ?>');
+        var dataf = [];
+
+        for (let i = 0; i < a; i++) {
+            dataf[i]=listval[listid[i]];
+        }
+
+        var ctx5 = $("#pie-prod").get(0).getContext("2d");
+        var myChart5 = new Chart(ctx5, {
+            type: "pie",
+            data: {
+                    labels: listname,
+                datasets: [{
+                    backgroundColor: [
+                        "rgba(235, 22, 26, 1)",
+                        "rgba(235, 22, 24, .9)",
+                        "rgba(235, 22, 22, .8)",
+                        "rgba(235, 22, 20, .7)",
+                        "rgba(235, 22, 18, .6)",
+                        "rgba(235, 22, 16, .5)",
+                        "rgba(235, 22, 14, .4)",
+                        "rgba(235, 22, 12, .3)",
+                        "rgba(235, 22, 10, .2)",
+                        "rgba(235, 22, 8, .1)"
+                    ],
+                    data: dataf
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
 </body>
 
 </html>
-

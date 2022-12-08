@@ -10,10 +10,10 @@ $adress=$_POST['objet'];
         $query= "UPDATE don SET objet='adress', caractéristiques='$name' , description='$suj' where id_catégories='$id'";
   
    
-  $con->query($query);
+  $conn->query($query);
   $query= "UPDATE catégories SET catégorie='$messagee' where id_categorie='$id'";
 
-  $con->query($query);
+  $conn->query($query);
     
   /*} else {
  
