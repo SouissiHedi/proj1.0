@@ -218,6 +218,7 @@ if(isset($_POST['recup_submit'])) {
                   $mailexist = $mailexist->rowCount();
                     if($mailexist == 1) {
                             $_SESSION['recup_mail'] = $recup_mail;
+                            $_SESSION['mail_env'] = $mail;
                             $recup_code = "";
                             for ($i=0; $i < 8; $i++) {
                                 $recup_code .= mt_rand(0,9);

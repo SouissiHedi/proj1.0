@@ -4,14 +4,14 @@ require "config.php";
 //
 // *** To Email ***
 
-$to = 'souissi.hedi@esprit.tn';
+$to = $_SESSION['mail_env'];
 //
 // *** Subject Email ***
 $subject = 'Notification de StarTroc';
 //
 // *** Content Email ***
 $recup_mail=$_SESSION['recup_mail'] ;
-$query = "SELECT * FROM users WHERE email='souissi.hedi@esprit.tn'";
+$query = "SELECT * FROM users WHERE email LIKE '%$to%'";
 $query_run = $conn->query($query);
 $count = $query_run->fetchAll(PDO::FETCH_ASSOC);
 
