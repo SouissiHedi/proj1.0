@@ -181,7 +181,7 @@ if(isset($_POST['submit'])) {
 
     $select = "SELECT * FROM users WHERE email = '$email' AND code = '$code'";
     $result = $conn->query($select);
-    $query_count = "SELECT COUNT(*) FROM users WHERE email = '$email' AND code = '$code'";
+    $query_count = "SELECT COUNT(*) FROM users WHERE email = '$email' AND code = '$code' AND activity = '0'";
     $res = $conn->query($query_count);
     $count = $res->fetchColumn();
     if($count != 0){ 
@@ -199,6 +199,7 @@ if(isset($_POST['submit'])) {
         }
     }else {
         $error[] = 'Password or email incorrect';
+        header("location: login.php");
     }
 
 }
