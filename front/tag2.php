@@ -9,6 +9,8 @@ $query_run=$conn->query($sqlq);
 foreach ($query_run as $ech){
     if(($ech['IdProd1']==$prod1 && $ech['IdProd2']==$prod2) || ($ech['IdProd1']==$prod2 && $ech['IdProd2']==$prod1)){
         $ajout++;
+    }else if($ech['IdProd1']==$prod1 || $ech['IdProd1']==$prod2 || $ech['IdProd2']==$prod1 || $ech['IdProd2']==$prod2 ){
+      $ajout=-100;
     }
 }
 if($ajout==0){
@@ -112,17 +114,23 @@ if($ajout==0){
        Votre échange a été enregistré. Vous serez redirigé vers la page de prise de rendez-vous.
       </h2>
       <?php
-      }else{
+      }else if($ajout>0){
       ?>
       <h2>
         Votre échange est déja enregistré. Vous serez redirigé vers la page de prise de rendez-vous.
+      </h2>
+      <?php
+      }else{
+      ?>
+      <h2>
+      Votre échange est refusé car l'un des produits est en cours d'échange.
       </h2>
       <?php
       }
       ?>
     </div>
     
-    <form  action="" enctype="multipart/form-data" method="post" >
+    <form  action="products.php" enctype="multipart/form-data" method="post" >
         <div class="d-flex justify-content-center">
             <button type="submit" class="" disabled>Poursuivre</button>
         </div>
