@@ -34,12 +34,20 @@ $c0=$clientC->star0();
 
 <script>
     function aff_add_form(){
-    if (document.getElementById("add-form-cat").hidden == true ){
-        document.getElementById("add-form-cat").hidden = false;
-    }else{
-        document.getElementById("add-form-cat").hidden = true;
+        if (document.getElementById("add-form-cat").hidden == true ){
+            document.getElementById("add-form-cat").hidden = false;
+        }else{
+            document.getElementById("add-form-cat").hidden = true;
+        }
     }
-}
+    
+    function aff_tab(){
+        if (document.getElementById("joint_product").hidden == true ){
+            document.getElementById("joint_product").hidden = false;
+        }else{
+            document.getElementById("joint_product").hidden = true;
+        }
+    }
 </script>
 
 <!DOCTYPE html>
@@ -373,8 +381,84 @@ $c0=$clientC->star0();
                                    
                                 </tbody>
                             </table>
+                            
+                            <button onclick="aff_tab()"  class="btn btn-info btn-sm">Union entre le tableau des produits et celui des catégories</button>   
                         </div>
                     </div>
+
+                    
+                    <div class="col-12" id="joint_product" hidden>
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <div style="display: flex;">
+                                <div style="flex: 50%;"><h6 class="mb-4">table des produits</h6></div>
+                                <div style="flex: 50%;margin-left: 69%;"><a href="BigWing/addform.php"  class="btn btn-success btn-sm">Add</a></div>   
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">idProd</th>
+                                        <th scope="col">Nom du Produit</th>
+                                        <th scope="col">Image affectée</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Price</th>
+                                        <th> Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $jointure = "SELECT * FROM produit INNER JOIN category ON produit.Type = category.IdCat";
+                                        $requ=$conn->prepare($jointure);
+                                        $requ->execute();
+                                        $data=$requ->fetchAll(PDO::FETCH_ASSOC);
+
+                                        $query_count = "SELECT COUNT(*) FROM produit INNER JOIN category ON produit.Type = category.IdCat";
+                                        $res = $conn->query($query_count);
+                                        $count = $res->fetchColumn();
+                                        if($count>0)
+                                        {
+                                            foreach ($data as $produit) 
+                                            {
+                                               ?>
+                                               <tr>
+                                                <td><?= $produit['IdProd'];?></td>
+                                                <td><?= $produit['NomProduit'];?></td>
+                                                <td><img style="margin-left:40px;max-height:30px" src='data:image/png;base64,<?=base64_encode($produit['lienImg'])?>'/></td>
+                                                <td><?= $produit['Description'];?></td>
+                                                <td><?= $produit['NomCat'];?></td>
+                                                <td><?= $produit['valeurP'];?></td>
+                                                <td>
+                                                   
+                                                    <a href="aaa.php?IdProd=<?= $produit["IdProd"]; ?>" name ="update" class="btn btn-success btn-sm">Update</a>
+                                                    
+                                                    <form action="codeH.php" method="POST" class="d-inline">
+                                                    <button type="submit" name="delete-produit" value="<?= $produit['IdProd'] ?>" class="btn btn-danger btn-sm">Delete</button>
+
+                                                    </form>
+                                                    <a href="ev.php?IdProd=<?= $produit["IdProd"]; ?>" name ="update" class="btn btn-warning btn-sm">Evaluate</a>
+                                                </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                                    ?>
+                                                    <tr>
+                                                        <td><?=$count;?></td>
+                                                    </tr>
+                                                    <?php
+                                            
+                                        }
+                                        else
+                                        {
+                                             echo"<h5>no record found</h5>";   
+                                        }
+                                    ?>
+                                    
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
 
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
