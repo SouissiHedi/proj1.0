@@ -22,6 +22,23 @@ if($ajout==0){
     $step->bindParam(':IdProd2',$prod2,PDO::PARAM_INT, 20);
 
     $step->execute();
+
+/*
+    $to = $_SESSION['mail_env'];
+    $subject = 'Notification de StarTroc';
+
+    $content = "<html><h2>Bonjour,</h2><p>Votre échange a été enregistré. </p></html>";
+    //
+    //*** Head Email ***
+
+    $headers = "Content-type:text/html;charset=UTF-8" . "\r\n"; 
+    
+    $headers .= "From: startroc3@gmail.com\r\n";
+    //
+    //*** Show the result... ***
+    mail($to, $subject, $content, $headers);
+*/
+
 }
 
 ?>
