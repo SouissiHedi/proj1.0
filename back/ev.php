@@ -111,13 +111,13 @@ require'config.php';
       </h2>
     </div>
     <div class="container">
-      <form  id="login_form" name="update" action="codeH.php?IdProd=<?= $_GET["IdProd"]; ?>" method="post" >
+      <form  id="login_form" name="eval" action="codeH.php?IdProd=<?= $_GET["IdProd"]; ?>" method="post" >
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputNameP">Identifiant du Produit</label>
-            <input type='text'  class="form-control" name="produit_id" value="<?=$_GET["IdProd"];?>"   required>
+            <input type='text'  class="form-control" name="produit_id" value="<?=$_GET["IdProd"];?>" disabled   required>
             <label for="inputNameP">Nom du Produit</label>
-            <input type="text" class="form-control" id="inputNameP" name="NomProduit"  value="<?=$produit['NomProduit'];?>"   required/>
+            <input type="text" class="form-control" id="inputNameP" name="NomProduit"  value="<?=$produit['NomProduit'];?>" disabled  required/>
           </div>
           <div class="form-group col-md-6">
             <input type="hidden" class="form-control bg" type=file id='lienImg' name='lienImg' disabled>
@@ -128,7 +128,7 @@ require'config.php';
         <div class="form-row">
           <div class="form-group col-md-6">
           <label for="inputState">Selectionner le type de produit</label>
-            <select id="inputState" name="Type" class="form-control" >
+            <select id="inputState" name="Type" class="form-control" disabled >
               <?php
                 $allcat_qu = "SELECT * FROM category";
                 $allcat=$conn->query($allcat_qu);
@@ -150,7 +150,7 @@ require'config.php';
     </div>
 
     <div class="d-flex justify-content-center">
-        <button  type="submit" name="update" form="login_form">Validate</button>
+        <button  type="submit" name="eval" form="login_form">Validate</button>
     </div>
     </form>
     

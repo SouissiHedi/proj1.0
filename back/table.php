@@ -648,7 +648,109 @@ $c0=$clientC->star0();
                             </table>
                         </div>
                     </div>
-                
+                    
+                    
+                    <div class="col-12 ">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Table gestion</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">IDD</th>
+                                        <th scope="col">id client</th>
+                                        <th scope="col">objet</th>
+                                        <th scope="col">caractéristiques</th>
+                                        <th scope="col">description</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $query = "SELECT * FROM don,catégories where don.id_catégories=catégories.id_categorie";
+                                        $query_run = $conn->query($query);
+                                        
+                                        $query_count = "SELECT COUNT(*) FROM don,catégories where don.id_catégories=catégories.id_categorie";
+                                        $res = $conn->query($query_count);
+                                        $count = $res->fetchColumn();
+
+
+                                        if($count>0)
+                                        {
+                                            foreach ($query_run as $clientC) 
+                                            {
+                                               ?>
+                                               <tr>
+                                                    <td><?= $clientC['IDD']?></td>
+                                                    <td><?= $clientC['id_categorie']?></td>
+                                                    <td><?= $clientC['objet']?></td>
+                                                    <td><?= $clientC['caractéristiques']?></td>
+                                                    <td><?= $clientC['description']?></td>
+                                                    <td><?= $clientC['catégorie']?></td>
+                                                    <td>
+                                                        <a class="btn btn-danger btn-sm" href="delete.php?objet=<?= $clientC['id_categorie']; ?>">delete</a>
+                                                        <a class="btn btn-success btn-sm" href="form.php?id=<?= $clientC['id_categorie']; ?>">UPDATE</a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            } 
+                                        }
+                                        else
+                                        {
+                                             echo"<h5>no record found</h5>";   
+                                        }
+                                    ?>
+                                    
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+               
+                    <td><a  href="..\..\projet-web-master\BigWing\index.html">go to web site</a></td>
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Table catégories</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">id</th>
+                                        <th scope="col">catégorie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $query2 = "SELECT * FROM don,catégories where don.id_catégories=catégories.id_categorie";
+                                        $query_run2 = $conn->query($query2);
+                                        
+                                        $query_count2 = "SELECT COUNT(*) FROM don,catégories where don.id_catégories=catégories.id_categorie";
+                                        $res2 = $conn->query($query_count2);
+                                        $count2 = $res2->fetchColumn();
+
+
+                                        if($count2>0)
+                                        {
+                                            foreach ($query_run2 as $clientC) 
+                                            {
+                                               ?>
+                                               <tr>
+                                                    <td><?= $clientC['id_categorie']?></td>
+                                                    <td><?= $clientC['catégorie']?></td>
+                                                </tr>
+                                                <?php
+                                            } 
+                                        }
+                                        else
+                                        {
+                                             echo"<h5>no record found</h5>";   
+                                        }
+                                    ?>
+                                    
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
