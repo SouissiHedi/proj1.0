@@ -185,8 +185,10 @@ if(isset($_POST['submit'])) {
     $res = $conn->query($query_count);
     $count = $res->fetchColumn();
     if($count != 0){ 
+        $_SESSION['mail_env']=$email;
         $row = $result->fetch(PDO::FETCH_ASSOC);
         $id= $row['id'];
+        $_SESSION['id']=$id;
         $select1 = "SELECT * FROM role WHERE id_client =$id "; 
         $result1 = $conn->query($select1);
         $row2 = $result1->fetch(PDO::FETCH_ASSOC);

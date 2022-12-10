@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col-lg-8">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="index.php">
                 <span>
                   startroc
                 </span>
@@ -438,7 +438,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="col-lg-8">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
             <img src="C:\Users\user\Pictures" height="50px" width="60px">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
               <span>
                 startroc
               </span>

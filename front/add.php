@@ -35,4 +35,4 @@ $step->execute();
     echo'<script>alert("compte already exist")</script>';
   }*/
  
-  //header('Location:../../../vue/login.html');
+  //header('Location:../../../vue/login.php');

@@ -63,14 +63,24 @@ $mail->isHTML(true);
 $mail->Subject = 'Notification de StarTroc'; 
  
 // Mail body content 
-$bodyContent = '<h1>You sent an Exchange Proposal</h1>'; 
-$bodyContent .= '<p>This HTML email is sent from the localhost server using PHP by <b>CodexWorld</b></p>'; 
-$bodyContent .= '<img src="cid:achat">'; 
-$bodyContent .= '<img src="cid:proposition">'; 
+$bodyContent = '<h1>You sent an Exchange Proposal</h1>
+				<table style="width:100%;">
+				<tr>
+				<td><p>This the product you chose for the exchange	</p></td>
+				<td><p>This is the product you are proposing for the exchange</p></td>
+				</tr>
+				<tr>
+				<td><img style="width:300px" src="cid:achat"></td>
+				<td><img style="width:300px" src="cid:proposition"></td>
+				</tr>
+				</table>'; 
+
+
+
 $mail->Body    = $bodyContent; 
 
-$mail->AddEmbeddedImage('chosen.png','achat');
-$mail->AddEmbeddedImage('property.png','proposition');
+$mail->AddEmbeddedImage('chosen.png','achat','product_you_chose.png');
+$mail->AddEmbeddedImage('property.png','proposition','your_product.png');
  
 // Send email 
 if(!$mail->send()) { 

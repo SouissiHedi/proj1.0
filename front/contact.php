@@ -38,7 +38,7 @@
         <div class="row">
           <div class="col-lg-8">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="index.php">
                 <span>
                   startroc
                 </span>
@@ -51,22 +51,22 @@
                 <div class="d-flex  flex-column flex-lg-row align-items-center">
                   <ul class="navbar-nav  ">
                     <li class="nav-item active">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="about.html">About </a>
+                      <a class="nav-link" href="about.php">About </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="service.html">Services </a>
+                      <a class="nav-link" href="service.php">Services </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact</a>
+                      <a class="nav-link" href="contact.php">Contact</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="sign up.html">Sign up</a>
+                      <a class="nav-link" href="sign up.php">Sign up</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="login.html"> Login</a>
+                      <a class="nav-link" href="login.php"> Login</a>
                     </li>
                   </ul>
                   <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
