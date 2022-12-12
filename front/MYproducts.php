@@ -1,5 +1,7 @@
 <?php
-require'config.php';
+require 'config.php';
+session_start();
+$idusr=$_SESSION['id'];
 ?>
 
 <!DOCTYPE html><html><head><meta charset="utf-8"/>
@@ -27,8 +29,8 @@ require'config.php';
     <link href="cssH/style.css" rel="stylesheet"/>
     <!-- responsive style -->
     <link href="cssH/responsive.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/cssH/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/cssH/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   </head>
   
   <body class="sub_page">
@@ -71,7 +73,7 @@ require'config.php';
                       </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                      <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                      <button class="btn  my-2 my-sm-0 nav_search-btn"  type="button"  onclick="change()"></button>
                     </form>
                   </div>
                 </div>
@@ -81,6 +83,76 @@ require'config.php';
         </div>
       </header>
       <!-- end header section -->
+    </div>
+    
+    <div id="searchform" hidden>
+      <div  style="box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);">
+          <br>
+          <h4 style="margin-left:10%">Appliquer les paramètres de recherche :</h4>
+          <br>
+          <div class="container">
+            <?php
+              $srchprod =$srchdesc= "";
+              $srchtype = "-Toutes les Catégories-";
+
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (!empty($_POST["srchprod"])) {
+                  $srchprod = test_input($_POST["srchprod"]);
+                }
+                
+                if (!empty($_POST["srchtype"])) {
+                  $srchtype = test_input($_POST["srchtype"]);
+                }
+                  
+                if (!empty($_POST["srchdesc"])) {
+                  $srchdesc = test_input($_POST["srchdesc"]);
+                }
+              }
+
+              function test_input($data) {
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
+              }
+            ?>
+            <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="srchprod">Nom du Produit</label>
+                  <input type="text" class="form-control" id="srchprod" name="srchprod" value="<?php echo $srchprod;?>"/>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="srchtype">Selectionner le type de produit</label>
+                  <select id="srchtype" name="srchtype" class="form-control">
+                    <option <?php if (isset($srchtype) && $srchtype=='-Toutes les Catégories-') echo "selected";?> >-Toutes les Catégories-</option>
+                    <?php
+                      $allcat_qu = "SELECT * FROM category";
+                      $allcat=$conn->query($allcat_qu);
+                      foreach ($allcat as $Ctgs){
+                    ?>
+                    <option <?php if (isset($srchtype) && $srchtype==$Ctgs['NomCat']) echo "selected";?> ><?=$Ctgs['NomCat']?></option>
+                    <?php
+                      }
+                    ?>
+                  </select>
+                </div>
+
+              </div>
+              <div class="form-group">
+                <label for="srchdesc">Description</label>
+                <input type="text" class="form-control" id="srchdesc" name="srchdesc" placeholder="" value="<?php echo $srchdesc;?>"/>
+              </div>
+              </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="">Appliquer</button>
+                </div>
+            </form>
+          <br>
+          </div>
+
+      </div>
     </div>
   
     <!-- contact section -->
@@ -110,10 +182,40 @@ require'config.php';
     
               <!-- DÉBUT DU ROW -->
               <?php
-                $query = "SELECT * FROM produit";
+                if($srchtype=="-Toutes les Catégories-"){
+                  if ( $srchprod!="" and $srchdesc!=""){
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%' AND NomProduit LIKE '%$srchprod%'";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%' AND NomProduit LIKE '%$srchprod%'";
+                  }elseif($srchprod!="" and $srchdesc==""){
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr AND NomProduit LIKE '%$srchprod%'";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr AND NomProduit LIKE '%$srchprod%'";
+                  }elseif($srchprod=="" and $srchdesc!=""){
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%'";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%'";
+                  }else{
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr";
+                  }
+                }else{
+                  $cat_qu = "SELECT * FROM category WHERE NomCat LIKE '%$srchtype%'";
+                  $cat=$conn->query($cat_qu);
+                  $idtype = $cat->fetch(PDO::FETCH_BOTH); 
+                  $idCategry =  $idtype['IdCat'];
+                  if ( $srchprod!="" and $srchdesc!=""){
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%' AND NomProduit LIKE '%$srchprod%' AND Type=$idCategry";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%' AND NomProduit LIKE '%$srchprod%' AND Type=$idCategry";
+                  }elseif($srchprod!="" and $srchdesc==""){
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr AND NomProduit LIKE '%$srchprod%' AND Type=$idCategry";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr AND NomProduit LIKE '%$srchprod%' AND Type=$idCategry";
+                  }elseif($srchprod=="" and $srchdesc!=""){
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%' AND Type=$idCategry";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr AND Description LIKE '%$srchdesc%' AND Type=$idCategry";
+                  }else{
+                    $query = "SELECT * FROM produit WHERE id_user=$idusr AND Type=$idCategry";
+                    $query_count = "SELECT COUNT(*) FROM produit WHERE id_user=$idusr AND Type=$idCategry";
+                  }
+                }
                 $query_run = $conn->query($query);
-                
-                $query_count = "SELECT COUNT(*) FROM produit";
                 $res = $conn->query($query_count);
                 $row = $res->fetchColumn();
 
@@ -138,8 +240,8 @@ require'config.php';
                 ?>
                 <div class="col-lg-3 col-sm-1">
                   <div class="card element box">
-                    <!-- Image -->
-                    <div class="card-image"><img class="fiximg" src="images/prod1.jpg" alt="Responsive image"></div>
+                      <!-- Image -->
+                    <div class="card-image"><img class="fiximg" src='data:image/png;base64,<?=base64_encode($arr[$i*4+$j]['lienImg'])?>' alt="Responsive image"></div>
                     <!-- Corp de notre carte -->
                     <div class="card-body">
                       <!-- Titre du jeu -->
@@ -153,7 +255,7 @@ require'config.php';
                       <div class="card-excerpt">
                         <p><?=$arr[$i*4+$j]['Description'];?></p>
                       </div>
-                      <button name="prod1" class="Bbutton add-to-basket">Choisir le Produit</button>
+                      <a href="../back/aaa.php?IdProd=<?= $arr[$i*4+$j]["IdProd"]; ?>" name ="update" class="Bbutton add-to-basket">Modifier le Produit</a>
                     </div>
                     <!-- Fin du corp -->
                   </div>
@@ -164,6 +266,14 @@ require'config.php';
               </div>
               <?php
                   }
+                }else{
+                  ?>
+                    <div class="container products_heading">
+                      <h4>
+                      Aucun Produit ne correspond à votre recherche
+                      </h4>
+                    </div>
+                  <?php
                 }
               ?>
               <!-- FIN DU ROW -->
@@ -421,5 +531,6 @@ require'config.php';
   
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
  
   </body></html>

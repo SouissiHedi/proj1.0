@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+session_start();
 ?>
 
 <!DOCTYPE html><html><head><meta charset="utf-8"/>
@@ -166,7 +167,21 @@ require 'config.php';
     
         </div>
         <div class="tab-pane fade active show" id="pills-products" role="tabpanel" aria-labelledby="pills-products-tab">
-    
+          <?php
+            if(isset($_SESSION['mail_env'])){
+          ?>
+            <section class="info_section layout_padding2-bottom">
+              <div class=" container info_content">
+                <div class="form_container">
+                  <button style="margin-left: 27.5em;">
+                    <a href="MYproducts.php">My Articles</a>
+                  </button>
+                </div>
+              </div>
+            </section>
+          <?php
+            }
+          ?>
             <!-- DÉBUT CONTAINER -->
             <div class="container">
     
