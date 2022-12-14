@@ -79,7 +79,7 @@
   <br><br>
             
        <body>  
-        <form action="recherche.php"  method="post">
+        <form action="recherchey.php"  method="post">
           <div class="contactez-nous">
      <center> <h1>Les Catégories de Dons</h1>
       <p>Bienvenu dans notre cite web!Envie de consulter nos dons? </p>
@@ -96,9 +96,9 @@
       <label for="sujet">Choisissez le type de dons que vous voulez consultez: </label>
       <select name="sujet" id="gg" >
       <option value="Choisissez votre type de don" disabled selected hidden>Choisissez votre type de don</option>
-      <option value="donation-simple" >Dons de vêtements(hiver/printemps/etc..)</option>
-      <option value="donation-partage">Dons de rentée scolaire</option>
-      <option value="donation-manuel">Dons d'accesoires</option>
+      <option value="vetements" >Dons de vêtements(hiver/printemps/etc..)</option>
+      <option value="rentee-scolaire">Dons de rentée scolaire</option>
+      <option value="accesoires">Dons d'accesoires</option>
       <option value="autre">Autre...</option>
       </select>
       <span id="error"></span>

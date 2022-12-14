@@ -757,11 +757,12 @@ if(isset($_POST['uprep']))
                     
                     <div class="col-12 ">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Table gestion</h6>
+                            <h6 class="mb-4">Table Dons</h6>
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">IDD</th>
+                                        <th scope="col">id category</th>
                                         <th scope="col">id client</th>
                                         <th scope="col">objet</th>
                                         <th scope="col">caractéristiques</th>
@@ -788,6 +789,7 @@ if(isset($_POST['uprep']))
                                                ?>
                                                <tr>
                                                     <td><?= $clientC['IDD']?></td>
+                                                    <td><?= $clientC['id_client']?></td>
                                                     <td><?= $clientC['id_categorie']?></td>
                                                     <td><?= $clientC['objet']?></td>
                                                     <td><?= $clientC['caractéristiques']?></td>

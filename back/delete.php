@@ -9,11 +9,7 @@ include('config.php');
         $mot=$_POST['password1'];*/
         if(isset($_GET['objet'])){
           $delete1="DELETE FROM don WHERE id_catégories ='$id' " ;
-          $delete2="UPDATE don set id_catégories=null WHERE id_catégories ='$id' " ;
-          $delete3="DELETE FROM catégories WHERE id_categorie ='$id' ";
           
-          $conn->query($delete1);
-          $conn->query($delete2);
           $conn->query($delete3);
         } else echo('aaslema');
         

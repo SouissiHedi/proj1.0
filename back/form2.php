@@ -206,15 +206,11 @@ $id=$_GET['id'];
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4"></h6>
-                            <form action="http://localhost/PROJET/Back-office-master/darkpan-1.0.0/update.php" method="post">
+                            <form action="update.php" method="post">
                                
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">IDD</label>
                                     <input name="id" type="text" class="form-control" id="exampleInputPassword1" value="<?= $clientC['IDD']?>">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">id categorie</label>
-                                    <input name="id2" type="text" class="form-control" id="exampleInputPassword1" value="<?= $clientC['id_catégories']?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">objet</label>
@@ -233,9 +229,9 @@ $id=$_GET['id'];
                                 <label for="sujet">Choisissez votre type de don: </label>
                                 <select name="sujet" id="sujet" >
                                 <option value="" disabled selected hidden>Choisissez votre type de don</option>
-                                <option value="donation-simple">Donation simple    (pour avantager les personnes de votre choix)</option>
-                                <option value="donation-partage">Donation partage  (pour eviter d'eventuels conflits)</option>
-                                <option value="donation-manuel">Donation manuel    (pour transmettre de l'argent et certains bien)</option>
+                                <option value="vetements" >Dons de vêtements(hiver/printemps/etc..)</option>
+                                <option value="rentee-scolaire">Dons de rentée scolaire</option>
+                                <option value="accesoires">Dons d'accesoires</option>
                                 <option value="autre">Autre...</option>
                                 </select>
                                 </div>

@@ -104,8 +104,7 @@
                       avec notre site
                     </h1>
                     <p>
-                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                      nostrud exercitation ullamco laboris nisi
+                      Vous pouvez ajouter vos produits voir les produits disponibles et meme faire des dons!
                     </p>
                     
                   </div>
@@ -128,35 +127,16 @@
                      un don <br/>
                       
                     </h1>
-                    <p>
-                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                      nostrud exercitation ullamco laboris nisi
-                    </p>
-                    
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="slider_img-box">
-                    <img src="images/slider-img.png" alt=""/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-5 col-md-6">
-                  <div class="slider_detail-box">
-                    <h1>
-                      commencez  <br/>
-                      vos échanges<br/>
-                      avec notre site
-                    </h1>
-                    <p>
-                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                      nostrud exercitation ullamco laboris nisi
-                    </p>
+                    <div class="btn-box">
+                      <a  href="AjoutDonForm.php" >
+                        Ajouter un don
+                      </a>
+                    </div>
+                    <div class="btn-box">
+                      <a  href="new.php" >
+                        Voir les Dons Disponibles
+                      </a>
+                    </div>
                     
                   </div>
                 </div>
@@ -196,11 +176,7 @@
         </div>
         <div class="detail-box">
           <p>
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis
-            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            Commencer à échanger dès à présent
           </p>
           
         </div>
@@ -226,12 +202,11 @@
           </div>
           <div class="detail-box">
             <h4>
-              Business <br/>
-              Consultant
+              Faire <br/>
+              un Échange
             </h4>
             <p>
-              have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even
-              slightly believable. If you are
+              Ajouter un produit à échanger
             </p>
           </div>
         </div>
@@ -241,12 +216,11 @@
           </div>
           <div class="detail-box">
             <h4>
-              Marketing <br/>
-              Analytics
+              Faire <br/>
+              un Don
             </h4>
             <p>
-              have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even
-              slightly believable. If you are
+              Ajouter vos dons
             </p>
           </div>
         </div>
@@ -256,12 +230,11 @@
           </div>
           <div class="detail-box">
             <h4>
-              Financial <br/>
-              Planning
+              Recevoir <br/>
+              un Don
             </h4>
             <p>
-              have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even
-              slightly believable. If you are
+              Voir les produits que les autres utilisateurs ont offert et essayer de recevoir le don
             </p>
           </div>
         </div>
@@ -285,14 +258,8 @@
         </div>
         <div class="detail-box">
           <p>
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
-            some form, by injected humour, or randomised words which don&#39;t look even slightly believable. I
+            Commence dès maintenant grace à notre plateforme simple et efficace
           </p>
-          <div>
-            <a href="">
-              Read More
-            </a>
-          </div>
         </div>
       </div>
 
@@ -310,8 +277,7 @@
       </div>
       <div class="content-container">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis
+          Notre plateforme simplifie les echange de produits entre les utilisateurs et offre un possibilité de donner ou de recevoir un don.
         </p>
         <div class="row">
           <div class="col-md-3 col-sm-6">
@@ -386,11 +352,7 @@
             <div class="client_container layout_padding2">
               <div class="client_text">
                 <p>
-                  psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  J'ai echangé plusieurs produit sur ce site et je ne peux etre que satisfait!!! 
                 </p>
               </div>
               <div class="detail-box">
@@ -399,10 +361,10 @@
                 </div>
                 <div class="name">
                   <h5>
-                    Joans Mark
+                    Firas Mensi
                   </h5>
                   <p>
-                    cal
+                    LEG
                   </p>
                 </div>
               </div>
@@ -412,37 +374,7 @@
             <div class="client_container layout_padding2">
               <div class="client_text">
                 <p>
-                  psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                </p>
-              </div>
-              <div class="detail-box">
-                <div class="img-box">
-                  <img src="images/client.png" alt=""/>
-                </div>
-                <div class="name">
-                  <h5>
-                    Joans Mark
-                  </h5>
-                  <p>
-                    cal
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="client_container layout_padding2">
-              <div class="client_text">
-                <p>
-                  psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  Bonne interface et facile à utiliser
                 </p>
               </div>
               <div class="detail-box">
@@ -472,55 +404,6 @@
     </div>
   </section>
   <!-- end client section -->
-  <!-- contact section -->
-  <section class="contact_section layout_padding">
-    <div class="container contact_heading">
-      <h2>
-        contactez nous
-      </h2>
-      <p>
-        psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      </p>
-    </div>
-    <div class="container">
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputName4">Name</label>
-            <input type="text" class="form-control" id="inputName4"/>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4"/>
-          </div>
-
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputNumber4">Phone number</label>
-            <input type="tel" class="form-control" id="inputNumber4"/>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputState">Select Service</label>
-            <select id="inputState" class="form-control">
-              <option selected=""></option>
-              <option>...</option>
-            </select>
-          </div>
-
-        </div>
-        <div class="form-group">
-          <label for="inputMessage">Message</label>
-          <input type="text" class="form-control" id="inputMessage" placeholder=""/>
-        </div>
-    </div>
-
-    <div class="d-flex justify-content-center">
-      <button type="submit" class="">Send</button>
-    </div>
-    </form>
-    
-  </section>
 
 
   <!-- end contact section -->
