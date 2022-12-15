@@ -249,6 +249,7 @@ if(isset($_POST['recup_submit'])) {
               }  
               else {
                   $error[] = "Adresse mail invalide";
+                  header("location: reset_password.php");
               }
               
 
