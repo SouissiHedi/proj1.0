@@ -260,9 +260,21 @@ session_start();
                       <div class="card-excerpt">
                         <p><?=$arr[$i*4+$j]['Description'];?></p>
                       </div>
-                      <form  action="../back/rendezVous.php">
+                      <?php
+                        if(isset($_SESSION['mail_env'])){
+                      ?>
+                      <form  action="EXchange.php">
                         <button type="submit"  class="Bbutton add-to-basket">Choisir le Produit</button>
                       </form>
+                      <?php
+                        }else{
+                      ?>
+                      <form  action="login.php">
+                        <button type="submit"  class="Bbutton add-to-basket">Choisir le Produit</button>
+                      </form>
+                      <?php
+                        }
+                      ?>
                     </div>
                     <!-- Fin du corp -->
                   </div>

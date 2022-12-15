@@ -24,6 +24,7 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet"/>
   <link href="css/csss.css" rel="stylesheet"/>
+
 </head>
 
 <body class="sub_page">
@@ -177,16 +178,16 @@
     </div>
 
     <div class="rationg">
-  <input type="radio" name="star" id="star"  value=5><label for="star1">
+  <input type="radio" name="star" id="star1"  value='5' hidden><label for="star1">
     
 </label>
-<input type="radio" name="star" id="star" value=4><label for="star2">
+<input type="radio" name="star" id="star2" value='4' hidden><label for="star2">
 </label>
-<input type="radio" name="star" id="star" value=3><label for="star3">
+<input type="radio" name="star" id="star3" value='3' hidden><label for="star3">
 </label>
-<input type="radio" name="star" id="star" value=2><label for="star4">
+<input type="radio" name="star" id="star4" value='2' hidden><label for="star4">
 </label>
-<input type="radio" name="star" id="star" value=1><label for="star5">
+<input type="radio" name="star" id="star5" value='1' hidden><label for="star5">
   
 </label>
 

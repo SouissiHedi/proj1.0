@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%,-50%) rotateY(180deg);
     margin-top: 3%;
-    margin-left: 24%;
+    margin-left: 22%;
     display: flex;
 }
 
@@ -16,7 +16,7 @@
     display: block;
     cursor: pointer;
     width:50px;    
-    padding-right: 5%;
+    padding-right: 6%;
   
 }
 .rationg label:before

@@ -134,12 +134,18 @@ if($ajout==0){
       ?>
     </div>
     
-    <form  action="products.php" enctype="multipart/form-data" method="post" >
+
+    <?php
+      if($ajout==0 || $ajout>0){
+    ?>
+    <form  action="../back/rendezVous.php" enctype="multipart/form-data" method="post" >
         <div class="d-flex justify-content-center">
-            <button type="submit" class="" disabled>Poursuivre</button>
+            <button type="submit" class="" >Poursuivre</button>
         </div>
     </form>
-    
+    <?php
+      }
+    ?>
   </section>
 
 
