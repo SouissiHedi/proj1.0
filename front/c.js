@@ -70,7 +70,6 @@ function nameValidation()
     else {
 
         test1.textContent = "le nom doit compter au minimum 3 carateres et ne contiant pas des valeurs ";
-        alert('aaaaaaaaa');
 
         document.querySelector('test1').style.color = "red";
 

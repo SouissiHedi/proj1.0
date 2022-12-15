@@ -8,9 +8,9 @@ include('config.php');
         $adress=$_POST['email'];
         $mot=$_POST['password1'];*/
         if(isset($_GET['objet'])){
-          $delete1="DELETE FROM don WHERE id_catégories ='$id' " ;
+          $delete1="DELETE FROM don WHERE IDD ='$id' " ;
           
-          $conn->query($delete3);
+          $conn->query($delete1);
         } else echo('aaslema');
         
  

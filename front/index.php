@@ -59,7 +59,7 @@
                       <a class="nav-link" href="service.php">Services </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="contact.php">Contact</a>
+                      <a class="nav-link" href="contact.php">Reclamation</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="products.php"> product</a>

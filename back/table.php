@@ -54,6 +54,31 @@ if(isset($_POST['uprep']))
             }
         }
     }
+
+    function filtrer(){ 
+        var filtre,tableau,ligne, cellule , i, text
+
+    filtre=document.getElementById("search").value.toUpperCase();
+        tableau= document.getElementById("tableau");
+        ligne=tableau.getElementsByTagName("tr");
+        for(i=0;i<ligne.length;i++)
+        {
+            cellule=ligne[i].getElementsByTagName("td")[0];
+            if(cellule)
+            {
+                text=cellule.innerText;
+                if(text.toUpperCase().indexOf(filtre)>-1)
+                {
+                    ligne[i].style.display="";
+                }
+                else
+                {
+                    ligne[i].style.display="none";
+                }
+
+            }
+        }
+    }
 </script>
 
 
@@ -170,7 +195,7 @@ if(isset($_POST['uprep']))
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4">
-                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+                    <input class="form-control bg-dark border-0" type="search" placeholder="Search"  id="search" onkeyup="filtrer()">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -244,7 +269,7 @@ if(isset($_POST['uprep']))
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
+                            <a href="../front/deconnexion.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -802,8 +827,8 @@ if(isset($_POST['uprep']))
                                                     <td><img style="margin-left:20px;max-height:30px" src='data:image/png;base64,<?=base64_encode($clientC['photos'])?>'/></td>
                                                     <td><?= $clientC['catégorie']?></td>
                                                     <td>
-                                                        <a class="btn btn-danger btn-sm" href="delete.php?objet=<?= $clientC['id_categorie']; ?>">delete</a>
-                                                        <a class="btn btn-success btn-sm" href="form2.php?id=<?= $clientC['id_categorie']; ?>">UPDATE</a>
+                                                        <a class="btn btn-danger btn-sm" href="delete.php?objet=<?= $clientC['IDD']; ?>">delete</a>
+                                                        <a class="btn btn-success btn-sm" href="form2.php?id=<?= $clientC['IDD']; ?>">UPDATE</a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -906,7 +931,7 @@ if(isset($_POST['uprep']))
                                             <td><?=$client['reclamation'];?></td>
                                             <td><?=$client['re'];?></td>
                                             <td style="width:21%;"> <button class="btn btn-danger btn-sm"><a href="table.php?delteteid=<?=$client['id'];?>" style="color:white" >Delete</a></button>
-                                            <button class="btn btn-danger btn-sm" ><a href="rep.php?delteteid=<?=$client['id'];?>" style="color:white" >repondre</a></button>
+                                            <button class="btn btn-success btn-sm" ><a href="rep.php?delteteid=<?=$client['id'];?>" style="color:white" >Answer</a></button>
                                             <button class="btn btn-warning btn-sm" ><a href="rep2.php?delteteid=<?=$client['id'];?>" style="color:white">UPDATE</a></button></td>
                                             </tr>
                                                                         

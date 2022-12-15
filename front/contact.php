@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['mail_env'])){
+  header("location: login.php");
+}
+
 if(isset($_SESSION['id'])){
    $idusr=$_SESSION['id'];
 } 

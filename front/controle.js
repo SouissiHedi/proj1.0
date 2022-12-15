@@ -69,7 +69,6 @@ function nameValidation(e)
     else {
 
         test1.textContent = "le nom doit compter au minimum 3 carateres et ne contiant pas des valeurs ";
-        alert('aaaaaaaaa');
 
         document.querySelector('test1').style.color = "red";
         e.preventDefault();
@@ -168,18 +167,7 @@ aa.addEventListener('click', function (e){
    //codaValidation(e);
    // codpValidation(e);
  
-   // var body= 'votre reclamation est bien reçu<br/>' +'ID:'+id+'<br/>Name: '+nom+'<br/>Phone: '+num2;
-    Email.send({
-        Host : "smtp.esprit.tn",
-        Username : "mehdi.gongi@esprit.tn",
-        Password : "211JMT4901",
-        To : 'mehdi.gongi@esprit.tn',
-        From :'mehdi.gongi@esprit.tn' ,
-        Subject : "This",
-        Body : "gdfgd"
-    }).then(
-      message => alert(message)
-    );
+  
    
     
 

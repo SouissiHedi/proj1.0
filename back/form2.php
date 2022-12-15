@@ -10,12 +10,12 @@ include('config.php');
 $id=$_GET['id'];
     
         
-  $query="SELECT * FROM don where id_catégories='$id'";
+  $query="SELECT * FROM don where IDD='$id'";
   $query_run=$conn->query($query);  
   $data=$query_run->fetchAll();
 
   
-  $query_count = "SELECT COUNT(*) FROM don where id_catégories='$id'";
+  $query_count = "SELECT COUNT(*) FROM don where IDD='$id'";
   $res = $conn->query($query_count);
   $count = $res->fetchColumn();
 
@@ -191,7 +191,7 @@ $id=$_GET['id'];
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
+                            <a href="../front/deconnexion.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
