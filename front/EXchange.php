@@ -5,6 +5,8 @@ session_start();
 if(!isset($_SESSION['mail_env'])){
   header("location: login.php");
 }
+
+$idusr=$_SESSION['id'];
 ?>
 
 <!DOCTYPE html><html><head><meta charset="utf-8"/>
@@ -106,10 +108,10 @@ if(!isset($_SESSION['mail_env'])){
     
               <!-- DÉBUT DU ROW -->
               <?php
-                $query = "SELECT * FROM produit";
+                $query = "SELECT * FROM produit WHERE id_user!=$idusr ";
                 $query_run = $conn->query($query);
                 
-                $query_count = "SELECT COUNT(*) FROM produit";
+                $query_count = "SELECT COUNT(*) FROM produit WHERE id_user!=$idusr ";
                 $res = $conn->query($query_count);
                 $row = $res->fetchColumn();
 
