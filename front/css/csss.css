@@ -3,21 +3,20 @@
     top: 95%;
     left: 50%;
     transform: translate(-50%,-50%) rotateY(180deg);
-    
+    margin-top: 3%;
+    margin-left: 24%;
     display: flex;
 }
 
-.rationg input
-{
-    /*display: none;*/
-}
+
 
 .rationg label
 {
 
     display: block;
     cursor: pointer;
-    width:50px;
+    width:50px;    
+    padding-right: 5%;
   
 }
 .rationg label:before
