@@ -197,6 +197,23 @@ if(isset($_POST['submit'])) {
         if($row2['type'] == "Admin"){
             $_SESSION['adm']=1;
             $_SESSION['adminis']=$row['name'];
+            switch($row['name']){
+                case 'hedi souissi':
+                    $_SESSION['photo']="img/hedi.jpg";
+                    break;
+                case 'malek bouzidi':
+                    $_SESSION['photo']="img/malek.jpg";
+                    break;
+                case 'divin djorly':
+                    $_SESSION['photo']="img/divin.jpg";
+                    break;
+                case 'youssra ben daoued':
+                    $_SESSION['photo']="img/youssra.png";
+                    break;
+                case 'mehdi gongi':
+                    $_SESSION['photo']="img/mehdi.png";
+                    break;
+            }
             header('location: ../back/table.php');
         }else {
             $_SESSION['adm']=0;
