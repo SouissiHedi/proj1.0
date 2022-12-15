@@ -1,3 +1,6 @@
+<?php
+require'config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -180,8 +183,66 @@
 
 
             <!-- Chart Start -->
+
+                        <?Php
+            require "config.php";// Database connection
+            $query="SELECT pays, date FROM rendezR";
+            $step=$conn->prepare($query);
+            if($step->execute()){
+            $php_data_array=$step->fetchAll();
+            //print_r($php_data_array);
+            //echo json_encode($php_data_array);
+            echo "<script>
+            var my_2d=".json_encode($php_data_array)."
+            </script>";
+            //Transfor PHP array to JavaScript two dimensional array
+            }else{
+            print_r($step->errorInfo());
+            }
+            ?>
+
+            
+            
+    
+            
+            </body>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script>
+            google.charts.load('current', {'packages':['corechart']});
+                // Draw the pie chart when Charts is loaded.
+                google.charts.setOnLoadCallback(draw_my_chart);
+                // Callback that draws the pie chart
+                function draw_my_chart() {
+                    // Create the data table .
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'pays');
+                    data.addColumn('number', 'date');
+            for(i=0;i<my_2d.length;i++)
+            data.addRow([my_2d[i][0],parseInt(my_2d[i][1])]);
+
+            // above row adds the JavaScript two dimensional array data into required chart format
+                var options = {title:'les pays des echanges ',
+                    width:500,
+                    height:500,
+                    legend:'left',
+                    is3D:true};
+
+                    // Instantiate and draw the chart
+                    var chart = new google.visualization.PieChart(document.getElementById('pie-chart'));
+                    chart.draw(data, options);
+                }
+            </script>
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Pie Chart</h6>
+                            <div id="pie-chart"></div>
+                        </div>
+            </div>
+
+
+
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">Single Line Chart</h6>
@@ -205,19 +266,7 @@
                             <h6 class="mb-4">Multiple Bar Chart</h6>
                             <canvas id="worldwide-sales"></canvas>
                         </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Pie Chart</h6>
-                            <canvas id="pie-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Doughnut Chart</h6>
-                            <canvas id="doughnut-chart"></canvas>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <!-- Chart End -->

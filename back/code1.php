@@ -28,30 +28,6 @@ else
 {
    	echo "ERROR";
 }
-/*mail = $_POST['mail'];
-$prix =$_POST['prix'];
-$aqui = $_POST['aqui'];
-
-
-$visitor_email = $mail;
- 
-  $reciever=$aqui;
-
-
-
-$email_from = $visitor_email;
-
-$email_subject = "Payment";
-
-$email_body = "tu as recu un message de $visitor_email.\n".
-                            "l'argent ajouté au solde de votre compte est:\n $prix.\n";
-$to = $reciever;
-
-$headers = "From: $email_from \r\n";
-                          
-$headers .= "Reply-To: $visitor_email \r\n";
-                          
-mail($to,$email_subject,$email_body,$headers); */   
 
 if(isset($_POST['delete-argent']))
 {

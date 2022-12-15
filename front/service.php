@@ -96,27 +96,26 @@
           </div>
           <div class="detail-box">
             <h4>
-              Business <br/>
-              Consultant
+            Faire <br/>
+              un Échange
             </h4>
             <p>
-              have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even
-              slightly believable. If you are
+            Ajouter un produit à échanger
             </p>
           </div>
         </div>
+       
         <div class="service_box">
           <div class="img-box">
             <img src="images/s-2.jpg" alt=""/>
           </div>
           <div class="detail-box">
-            <h4>
-              Marketing <br/>
-              Analytics
+          <h4>
+              Faire <br/>
+              un Don
             </h4>
             <p>
-              have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even
-              slightly believable. If you are
+              Ajouter vos dons
             </p>
           </div>
         </div>
@@ -126,17 +125,15 @@
           </div>
           <div class="detail-box">
             <h4>
-              Financial <br/>
-              Planning
+              Recevoir <br/>
+              un Don
             </h4>
             <p>
-              have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even
-              slightly believable. If you are
+              Voir les produits que les autres utilisateurs ont offert et essayer de recevoir le don
             </p>
           </div>
         </div>
       </div>
-      <div>
         <a href="">
           Read More
         </a>

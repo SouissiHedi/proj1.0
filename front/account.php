@@ -5,7 +5,8 @@ session_start();
 require'config.php';
 
 if(isset($_SESSION['mail_env'])){
-    $getid = $_SESSION['mail_env'];
+  $getid = $_SESSION['mail_env'];
+  $getid1 = $_SESSION['id'];
     $requser = $conn->prepare('SELECT * FROM users WHERE email= ?');
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
@@ -104,7 +105,7 @@ if(isset($_SESSION['mail_env'])){
 		<h1>
             Bienvenue sur mon Compte
         </h1>
-        <p style="margin-left:43%">Mail <?php echo $userinfo['email']; ?></p>
+        <p style="margin-left:43%">Mail : <?php echo $userinfo['email']; ?></p>
              
               <?php
                 include('../back/message.php'); 
@@ -112,11 +113,11 @@ if(isset($_SESSION['mail_env'])){
 
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-                <a class="nav-link" href="">Consulter mes historiques de trocs</a>
-                <a class="nav-link" href="">Nous contacter </a>
-                <a class="nav-link" href="">Faire un Don </a>
+                <a class="nav-link" href="MYproducts.php">Consulter mes Produits</a>
+                <a class="nav-link" href="contact.php">Nous contacter </a>
+                <a class="nav-link" href="AjoutDonForm.php">Faire un Don </a>
                 <form action="modif_compte.php" method="post">
-                    <a class="nav-link" name="maj" href="modif_compte.php?id=<?=$getid;?>">Mettre à jour mon Compte </a>
+                    <a class="nav-link" name="maj" href="modif_compte.php?id=<?=$getid1;?>">Mettre à jour mon Compte </a>
                 </form>
                 <a class="nav-link" href="deconnexion.php">Se Déconnecter </a>
 				<p></p>
