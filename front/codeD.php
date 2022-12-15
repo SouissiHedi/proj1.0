@@ -195,8 +195,11 @@ if(isset($_POST['submit'])) {
         
         
         if($row2['type'] == "Admin"){
+            $_SESSION['adm']=1;
+            $_SESSION['adminis']=$row['name'];
             header('location: ../back/table.php');
         }else {
+            $_SESSION['adm']=0;
             header('location: account.php?id='.$row['id']);
         }
     }else {

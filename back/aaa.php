@@ -1,5 +1,10 @@
 <?php
 require'config.php';
+
+session_start();
+if(!isset($_SESSION['mail_env']) || $_SESSION['adm']==0){
+    header("location: ../front/login.php");
+}
 ?>
 
 <!DOCTYPE html><html><head><meta charset="utf-8"/>

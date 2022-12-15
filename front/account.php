@@ -147,6 +147,6 @@ if(isset($_SESSION['mail_env'])){
 <?php 
 }
 else {
-
+  header("location: login.php");
 }
 ?>

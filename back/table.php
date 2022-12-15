@@ -2,6 +2,11 @@
 session_start();
 require 'config.php';
 
+    if(!isset($_SESSION['mail_env']) || $_SESSION['adm']==0){
+        header("location: ../front/login.php");
+    }
+
+
 include '../front/client.php';
 $clientC=new reclamation();
 
@@ -121,7 +126,7 @@ if(isset($_POST['uprep']))
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
+                        <h6 class="mb-0"><?=$_SESSION['adminis'];?></h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -234,7 +239,7 @@ if(isset($_POST['uprep']))
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex"><?=$_SESSION['adminis'];?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
@@ -296,7 +301,7 @@ if(isset($_POST['uprep']))
                                                    
                                                     <a href="../front/id-edit.php?id=<?= $users['id']; ?>" class="btn btn-success btn-sm">Update</a>
                                                     
-                                                    <form action="../front/role.php" method="POST" class="d-inline">
+                                                    <form action="role.php" method="POST" class="d-inline">
                                                     <button type="submit" name="admin-user" value="<?= $users['id'] ?>" class="btn btn-warning btn-sm">Role</button>
 
                                                     </form>
