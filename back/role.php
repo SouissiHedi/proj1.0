@@ -214,7 +214,7 @@ if(isset($_POST['admin-user']))
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h5>User Rights</h5>
-                            <form action="codeD.php?idcl=<?=$userss['id'];?>" name="admin-user" method="POST">  
+                            <form action="../front/codeD.php?idcl=<?=$userss['id'];?>" name="admin-user" method="POST">  
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
                                     <input class="form-control" type="text" value="<?=$userss['name'];?>" disabled>
