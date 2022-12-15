@@ -50,7 +50,7 @@ require '../PHPMailer/SMTP.php';
 $mail = new PHPMailer; 
   
 
-$mail->setFrom('startroc3@gmail.com', 'StraTroc'); 
+$mail->setFrom('startroc3@gmail.com', 'StrarTroc'); 
  
 // Add a recipient 
 $mail->addAddress($to); 
