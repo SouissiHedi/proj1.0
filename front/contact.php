@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['id'])){
+   $idusr=$_SESSION['id'];
+} 
+?>
+
 <!DOCTYPE html><html><head><meta charset="utf-8"/>
 
   
@@ -108,7 +115,17 @@
       
           <div class="form-group col-md-6">
             <label for="inputEmail6">  <i class="fa-solid fa-id-card"></i> Id</label>
-            <input type="text" class="form-control" id="inputEmail6" name="id" >
+            <?php 
+              if(isset($_SESSION['id'])){
+            ?>
+            <input type="text" class="form-control" id="inputEmail6" name="id" value = "<?=$_SESSION['id'];?>" >
+            <?php
+              }else{
+            ?>
+            <input type="text" class="form-control" id="inputEmail6" name="id"  >
+            <?php
+              }
+            ?>
             <test3>  </test3>
           </div>
           
